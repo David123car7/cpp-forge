@@ -6,13 +6,13 @@
 using cppforge::models::Node;
 
 namespace cppforge::vector {
-template <typename T> class VectorManager {
+template <typename T> class Vector {
 private:
   Node<T> *start;
 
 public:
   int size;
-  VectorManager() : start{nullptr}, size{0} {}
+  Vector() : start{nullptr}, size{0} {}
 
   // Adds a value to the end of the vector.
   void push_back(const T &data) {
@@ -201,8 +201,7 @@ public:
   }
 
   // Overloads the << operator
-  friend std::ostream &operator<<(std::ostream &os,
-                                  const VectorManager<T> &vector) {
+  friend std::ostream &operator<<(std::ostream &os, const Vector<T> &vector) {
     Node<T> *aux = vector.start;
     while (aux != nullptr) {
       os << aux->data;
@@ -212,7 +211,7 @@ public:
   }
 
   // Copy Constructor
-  VectorManager(const VectorManager<T> &vector) : VectorManager() {
+  Vector(const Vector<T> &vector) : Vector() {
     Node<T> *aux = vector.start;
     while (aux != nullptr) {
       push_back(aux->data);
@@ -221,6 +220,6 @@ public:
   }
 
   // Destructor
-  ~VectorManager() { clear(); }
+  ~Vector() { clear(); }
 };
 } // namespace cppforge::vector

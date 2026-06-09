@@ -1,8 +1,8 @@
-#include "cppforge/VectorManager.h"
+#include "cppforge/Vector.h"
 #include <iostream>
 
 int main() {
-  cppforge::vector::VectorManager<int> vector;
+  cppforge::vector::Vector<int> vector;
   vector.push_back(1);
   vector.push_back(2);
 
