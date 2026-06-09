@@ -1,4 +1,4 @@
-namespace cppforge {
+namespace cppforge::models {
 
 template <typename T> struct Node {
   Node *next;
@@ -6,4 +6,4 @@ template <typename T> struct Node {
 
   Node(T data) : data{data}, next{nullptr} {}
 };
-} // namespace cppforge
+} // namespace cppforge::models

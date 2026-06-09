@@ -3,6 +3,8 @@
 #include <ostream>
 #include <stdexcept>
 
+using cppforge::models::Node;
+
 namespace cppforge::vector {
 template <typename T> class VectorManager {
 private:
