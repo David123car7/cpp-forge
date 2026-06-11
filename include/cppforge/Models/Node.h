@@ -1,5 +1,6 @@
-namespace cppforge::models {
+#pragma once
 
+namespace cppforge::models {
 template <typename T> struct Node {
   Node *next;
   T data;

@@ -1,11 +1,14 @@
+#include "cppforge/Stack.h"
 #include "cppforge/Vector.h"
 #include <iostream>
 
 int main() {
-  cppforge::vector::Vector<int> vector;
-  vector.push_back(1);
-  vector.push_back(2);
-
-  std::cout << vector;
+  Stack<int> stack;
+  stack.push(1);
+  stack.push(2);
+  if (const int *peek = stack.peek(); peek != nullptr)
+    std::cout << "Top: " << *peek << "\n";
+  std::cout << "Size: " << stack.size() << "\n";
+  std::cout << stack;
   return 0;
 }

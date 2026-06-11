@@ -5,7 +5,7 @@
 
 using cppforge::models::Node;
 
-namespace cppforge::vector {
+namespace cppforge {
 template <typename T> class Vector {
 private:
   Node<T> *start;
@@ -222,4 +222,4 @@ public:
   // Destructor
   ~Vector() { clear(); }
 };
-} // namespace cppforge::vector
+} // namespace cppforge
