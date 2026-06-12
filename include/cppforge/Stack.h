@@ -1,11 +1,13 @@
 #pragma once
 
 #include "cppforge/Models/Node.h"
+#include <cstddef>
 #include <iostream>
 #include <ostream>
 
 using cppforge::models::Node;
 
+namespace cppforge {
 template <typename T> class Stack {
 private:
   Node<T> *top;
@@ -60,11 +62,11 @@ public:
   bool isEmpty() const { return top == nullptr; }
 
   // Gets the size of the stack
-  int size() {
+  size_t size() {
     if (isEmpty())
       return 0;
     Node<T> *x = top;
-    int count = 0;
+    size_t count = 0;
     while (x != nullptr) {
       count++;
       x = x->next;
@@ -72,6 +74,7 @@ public:
     return count;
   }
 
+  // Overloads the << operator
   friend std::ostream &operator<<(std::ostream &ostream,
                                   const Stack<T> &stack) {
     Node<T> *x = stack.top; // how do i have acess to top?
@@ -82,5 +85,7 @@ public:
     return ostream;
   }
 
+  // Destructor
   ~Stack() { clear(); }
 };
+} // namespace cppforge
