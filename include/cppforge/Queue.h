@@ -15,6 +15,7 @@ private:
 public:
   Queue() : first{nullptr}, last{nullptr} {}
 
+  // Gets a pointer to the first element of the queue
   const T *getFirst() const {
     if (first == nullptr)
       return nullptr;
@@ -22,6 +23,7 @@ public:
       return &first->data;
   }
 
+  // Gets a pointer to the last element of the queue
   const T *getLast() const {
     if (last == nullptr)
       return nullptr;
@@ -29,6 +31,7 @@ public:
       return &last->data;
   }
 
+  // Adds a value on the end of the queue
   void add(const T &data) {
     Node<T> *x = new Node<T>(data);
     if (first == nullptr) {
@@ -40,6 +43,7 @@ public:
     }
   }
 
+  // Removes a value from the start of the queue
   void pop() {
     if (isEmpty())
       return;
@@ -55,13 +59,16 @@ public:
     }
   }
 
+  // Clears the queue
   void clear() {
     while (!isEmpty())
       pop();
   }
 
+  // Checks if the queue is empty
   bool isEmpty() { return first == nullptr; }
 
+  // Gets the size of the queue
   size_t size() {
     if (isEmpty())
       return 0;
@@ -76,6 +83,7 @@ public:
     }
   }
 
+  // Overloads the << operator
   friend std::ostream &operator<<(std::ostream &ostream,
                                   const Queue<T> &queue) {
     Node<T> *aux = queue.first;
@@ -86,6 +94,7 @@ public:
     return ostream;
   }
 
+  // Destructor
   ~Queue() { clear(); }
 };
 } // namespace cppforge
