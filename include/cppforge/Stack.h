@@ -52,8 +52,14 @@ public:
   // Gets the value on top of the stack
   const T *peek() const {
     if (isEmpty()) {
-      std::cout << "Kazzio";
-      return nullptr; // check this
+      return nullptr;
+    }
+    return &top->data;
+  }
+
+  T *peek() {
+    if (isEmpty()) {
+      return nullptr;
     }
     return &top->data;
   }
