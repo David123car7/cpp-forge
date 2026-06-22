@@ -13,7 +13,42 @@ private:
 public:
   BinarySearchTree() : root{nullptr} {}
 
-  BinarySearchTree(const BinarySearchTree<T> &bst) { root = bst.root; }
+  BinarySearchTree(const BinarySearchTree<T> &bst) {
+    cppforge::Stack<NodeTree<T> *> originalStack;
+    cppforge::Stack<NodeTree<T> *> newTreeStack;
+    NodeTree<T> *original = bst.root;
+    NodeTree<T> *newTree = nullptr;
+    bool isRight = false;
+    while (original != nullptr || !newTreeStack.isEmpty()) {
+      while (original != nullptr) {
+        if (newTree == nullptr) {
+          root = new NodeTree<T>(original->data);
+          newTree = root;
+        } else {
+          if (!isRight) {
+            newTree->left = new NodeTree<T>(original->data);
+            newTree = newTree->left;
+          } else {
+            newTree->right = new NodeTree<T>(original->data);
+            newTree = newTree->right;
+            isRight = false;
+          }
+        }
+        originalStack.push(original);
+        newTreeStack.push(newTree);
+        original = original->left;
+      }
+      original = originalStack.peek();
+      newTree = newTreeStack.peek();
+      if (original->right != nullptr) {
+        original = original->right;
+        isRight = true;
+      } else
+        original = nullptr;
+      originalStack.pop();
+      newTreeStack.pop();
+    }
+  }
 
   void insert(const T &value) {
     if (root == nullptr)
@@ -103,6 +138,23 @@ public:
       }
     }
     delete front;
+  }
+
+  void clear() {
+    if (root == nullptr)
+      return;
+    cppforge::Stack<NodeTree<T> *> stack;
+    stack.push(root);
+    while (!stack.isEmpty()) {
+      NodeTree<T> *current = *stack.peek();
+      stack.pop();
+      if (current->right != nullptr)
+        stack.push(current->right);
+      if (current->left != nullptr)
+        stack.push(current->left);
+      delete current;
+    }
+    root = nullptr;
   }
 
   bool contains(const T &value) const {

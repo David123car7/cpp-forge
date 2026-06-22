@@ -10,6 +10,7 @@ int main() {
   bst.insert(3);
   bst.insert(79);
   bst.remove(3);
+  bst.clear();
   std::cout << bst;
   return 0;
 }
