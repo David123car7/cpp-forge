@@ -15,6 +15,23 @@ private:
 public:
   Queue() : first{nullptr}, last{nullptr} {}
 
+  Queue(const Queue &queue) {
+    if (queue.first == nullptr) {
+      first = nullptr;
+      last = nullptr;
+      return;
+    }
+    Node<T> *parameter = queue.first;
+    first = new Node<T>(parameter->data);
+    Node<T> *x = first;
+    while (parameter->next != nullptr) {
+      parameter = parameter->next;
+      x->next = new Node<T>(parameter->data);
+      x = x->next;
+    }
+    last = x;
+  }
+
   // Gets a pointer to the first element of the queue
   const T *getFirst() const {
     if (first == nullptr)

@@ -17,9 +17,13 @@ public:
 
   // Copy Constructor
   Stack(const Stack &stack) {
+    if (stack.top == nullptr) {
+      top = nullptr;
+      return;
+    }
     Node<T> *parameter = stack.top;
-    Node<T> *x = this->top;
-    this->top = stack.top;
+    top = new Node<T>(stack.top->data);
+    Node<T> *x = top;
     while (parameter->next != nullptr) {
       parameter = parameter->next;
       x->next = new Node<T>(parameter->data);
